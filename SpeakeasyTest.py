@@ -45,20 +45,20 @@ class Human(object):
             self.bar = bar
             while bar == True:
                 for x in stock:
-                    """
+                    '''
                     print x
                     print "Drink price: " + str(price[x])
                     print "Customer's money: " + str(money)
                     print "Thirst: " + str(thirst)
-                    """
+                   '''
                     if price[x] <= thirst and money >= price[x]:
                         self.money -= price[x]
                         stock[x] -= 1
-                        print "The Customer bought a %s! They have %s dollars left to sate their thirst. Thirst: %s" % (x, str(self.money), self.thirst)
                         self.thirst -= price[x]
+                        print "%s bought a %s! They have %s dollars left to sate their thirst. Thirst: %s" % (self.name, x, str(self.money), self.thirst)
+                    elif price[x] >= money and thirst >= price[x]:
+                        desparation += price[x] / 2
                         return
-                        break
-                    
                     else:
                         print "what have you done"
                         return
