@@ -73,6 +73,25 @@ class Human(object):
                 break
             else:
                 print "Customers want to buy, but there's no bartender. Hire one, or get him on the job." 
+        
+        def untilDrunk(self, money, stock, desparation, price, bar, thirst):
+            while thirst >= 1:
+                for x in stock:
+                    if price[x] <= thirst and money >= price[x]:
+                            self.money -= price[x]
+                            stock[x] -= 1
+                            self.thirst -= price[x]
+                            print "The Customer bought a %s! They have %s dollars left to sate their thirst. Thirst: %s" % (x, str(self.money), self.thirst)
+                            return
+    
+                        
+                        #Why does this else statement create an error if it's tabbed in one more time? Ask Paul.
+                    else:
+                            print "what have you done"
+                            return
+                            break
+                
+                
             
                 
 
@@ -103,13 +122,12 @@ HumanList = [EmployeeList[::], CustomerList[::]]
 mySpeakeasy = Speakeasy(HumanList, 10000, my_bar_stock, my_bar_prices, True)
 
 print "People in the speakeasy: " + str(mySpeakeasy.people)
+
 print "Initial stock: " + str(my_bar_stock)
 
 print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, True, Charles.thirst)
 
 print "Binge time! Down that special drank!"
-
-
     
 while Charles.thirst >= 1:
     print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, True, Charles.thirst)
@@ -138,3 +156,4 @@ James = Human("James", 100, 10, 0, False, True, 5, 100)
 
 storeHuman(James)
 
+print Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, True, Charles.thirst)
