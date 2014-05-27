@@ -1,4 +1,21 @@
 bar = True
+my_bar_prices = {
+    "Hooch": 1,
+    "Booze": 2,
+    "Whiskey": 3,
+    "Scotch": 5,
+    "The Good Stuff": 10
+    }
+
+my_bar_stock = {
+    "Hooch": 20,
+    "Booze": 10,
+    "Whiskey": 5,
+    "Scotch": 3,
+    "The Good Stuff": 1
+    }
+
+
 class Speakeasy(object):  
     def __init__(self, people, money, stock, price, bar):
         self.people = people
@@ -51,7 +68,7 @@ class Human(object):
                     print "Customer's money: " + str(money)
                     print "Thirst: " + str(thirst)
                     """
-                    if price[x] <= thirst and money >= price[x]:
+                    if price[x] <= thirst and money >= price[x] and stock[x] > 0:
                         self.money -= price[x]
                         stock[x] -= 1
                         self.thirst -= price[x]
@@ -76,6 +93,10 @@ class Human(object):
         
         def untilDrunk(self, money, stock, desparation, price, bar, thirst):
             while thirst >= 1:
+                self.buyDrink(money, stock, desparation, price, bar, thirst)
+                return
+                break
+            """
                 for x in stock:
                     if price[x] <= thirst and money >= price[x]:
                             self.money -= price[x]
@@ -89,34 +110,12 @@ class Human(object):
                     else:
                             print "what have you done"
                             return
-                            break
-                
+                           """
                 
             
                 
 
-my_bar_prices = {
-    "Hooch": 1,
-    "Booze": 2,
-    "Whiskey": 3,
-    "Scotch": 5,
-    "The Good Stuff": 10
-    }
 
-my_bar_stock = {
-    "Hooch": 20,
-    "Booze": 10,
-    "Whiskey": 5,
-    "Scotch": 3,
-    "The Good Stuff": 1
-    }
-    
-Jones = Human("Jones", 1000, 0, 0, True, False, 100, 0)
-Charles = Human("Charles", 100, 10, 0, False, True, 5, 100)
-
-EmployeeList = [Jones.name]
-CustomerList = [Charles.name]
-HumanList = [EmployeeList[::], CustomerList[::]]
 
 """
 mySpeakeasy = Speakeasy(HumanList, 10000, my_bar_stock, my_bar_prices, True)
@@ -130,11 +129,18 @@ print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_
 print "Binge time! Down that special drank!"
     
 while Charles.thirst >= 1:
-    print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, True, Charles.thirst)
+    print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
     
 print "Final stock: " + str(my_bar_stock)
 """
 
+Jones = Human("Jones", 1000, 0, 0, True, False, 100, 0)
+Charles = Human("Charles", 100, 40, 0, False, True, 5, 100)
+James = Human("James", 100, 10, 0, False, True, 5, 100)
+
+EmployeeList = [Jones.name]
+CustomerList = [Charles.name]
+HumanList = [EmployeeList[::], CustomerList[::]]
 
 
 def storeHuman(person):
@@ -152,8 +158,11 @@ def storeHuman(person):
     print EmployeeList
     print CustomerList
 
-James = Human("James", 100, 10, 0, False, True, 5, 100)
 
 storeHuman(James)
 
-print Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, True, Charles.thirst)
+print Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
+
+
+    
+print str(my_bar_stock)
