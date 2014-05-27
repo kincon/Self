@@ -14,7 +14,23 @@ my_bar_stock = {
     "Scotch": 3,
     "The Good Stuff": 1
     }
-
+"""
+def storeHuman(person):
+    if person.customer == True:
+        CustomerList.append(person.name)
+        return CustomerList
+    elif person.employee == True:
+        EmployeeList.append(person.name)
+        return EmployeeList
+    else:
+        print "This isn't a person."
+        return
+    return HumanList
+    print HumanList
+    print EmployeeList
+    print CustomerList
+storeHuman(James)
+"""
 
 class Speakeasy(object):  
     def __init__(self, people, money, stock, price, bar):
@@ -72,9 +88,8 @@ class Human(object):
                         self.money -= price[x]
                         stock[x] -= 1
                         self.thirst -= price[x]
-                        print "The Customer bought a %s! They have %s dollars left to sate their thirst. Thirst: %s" % (x, str(self.money), self.thirst)
-                        return
-                        break
+                        print "%s bought %s! They have %s dollars left to sate their thirst. Thirst: %s" % (self.name, x, str(self.money), self.thirst)
+                        
                     
                     """
                     elif price[x] >= money and thirst >= price[x]:
@@ -85,7 +100,6 @@ class Human(object):
                     #Why does this else statement create an error if it's tabbed in one more time? Ask Paul.
                 else:
                         print "what have you done"
-                        return
                         break
                 break
             else:
@@ -94,8 +108,9 @@ class Human(object):
         def untilDrunk(self, money, stock, desparation, price, bar, thirst):
             while thirst >= 1:
                 self.buyDrink(money, stock, desparation, price, bar, thirst)
-                return
-                break
+                return thirst
+                
+
             """
                 for x in stock:
                     if price[x] <= thirst and money >= price[x]:
@@ -142,27 +157,7 @@ EmployeeList = [Jones.name]
 CustomerList = [Charles.name]
 HumanList = [EmployeeList[::], CustomerList[::]]
 
-
-def storeHuman(person):
-    if person.customer == True:
-        CustomerList.append(person.name)
-        return CustomerList
-    elif person.employee == True:
-        EmployeeList.append(person.name)
-        return EmployeeList
-    else:
-        print "This isn't a person."
-        return
-    return HumanList
-    print HumanList
-    print EmployeeList
-    print CustomerList
-
-
-storeHuman(James)
-
-print Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
-
+Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
 
     
 print str(my_bar_stock)
