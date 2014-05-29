@@ -14,23 +14,9 @@ my_bar_stock = {
     "Scotch": 3,
     "The Good Stuff": 1
     }
-"""
-def storeHuman(person):
-    if person.customer == True:
-        CustomerList.append(person.name)
-        return CustomerList
-    elif person.employee == True:
-        EmployeeList.append(person.name)
-        return EmployeeList
-    else:
-        print "This isn't a person."
-        return
-    return HumanList
-    print HumanList
-    print EmployeeList
-    print CustomerList
-storeHuman(James)
-"""
+
+
+
 
 class Speakeasy(object):  
     def __init__(self, people, money, stock, price, bar):
@@ -72,43 +58,24 @@ class Human(object):
                 desparation += 5
 
 """
-        def buyDrink(self, money, stock, desparation, price, bar, thirst):
+        def buyDrink(self, money, stock, desparation, price, thirst):
             self.stock = stock
             self.price = price
-            self.bar = bar
             while bar == True:
-                for x in stock:
-                    """
-                    print x
-                    print "Drink price: " + str(price[x])
-                    print "Customer's money: " + str(money)
-                    print "Thirst: " + str(thirst)
-                    """
-                    if price[x] <= thirst and money >= price[x] and stock[x] > 0:
-                        self.money -= price[x]
-                        stock[x] -= 1
-                        self.thirst -= price[x]
-                        print "%s bought %s! They have %s dollars left to sate their thirst. Thirst: %s" % (self.name, x, str(self.money), self.thirst)
-                        
-                    
-                    """
-                    elif price[x] >= money and thirst >= price[x]:
-                        desparation += price[x] / 2
-                        return
-                        """
-                    
-                    #Why does this else statement create an error if it's tabbed in one more time? Ask Paul.
-                else:
-                        print "what have you done"
-                        break
-                break
+                if self.thirst >= 1:
+                    for x in stock:
+                        if price[x] <= thirst and money >= price[x] and stock[x] > 0:
+                            self.money -= price[x]
+                            stock[x] -= 1
+                            self.thirst -= price[x]
+                            print "%s bought %s! They have %s dollars left to sate their thirst. Thirst: %s" % (self.name, x, str(self.money), self.thirst)
+                            break
+
             else:
                 print "Customers want to buy, but there's no bartender. Hire one, or get him on the job." 
-        
         def untilDrunk(self, money, stock, desparation, price, bar, thirst):
             while thirst >= 1:
                 self.buyDrink(money, stock, desparation, price, bar, thirst)
-                return thirst
                 
 
             """
@@ -130,6 +97,30 @@ class Human(object):
             
                 
 
+def storeHuman(person):
+    if person.customer == True:
+        CustomerList.append(person.name)
+        return CustomerList
+    elif person.employee == True:
+        EmployeeList.append(person.name)
+        return EmployeeList
+    else:
+        print "This isn't a person."
+        return
+    return HumanList
+    print HumanList
+    print EmployeeList
+    print CustomerList
+    
+Jones = Human("Jones", 1000, 0, 0, True, False, 100, 0)
+Charles = Human("Charles", 100, 40, 0, False, True, 5, 100)
+James = Human("James", 100, 10, 0, False, True, 5, 100)
+
+EmployeeList = [Jones.name]
+CustomerList = [Charles.name]
+HumanList = [EmployeeList[::], CustomerList[::]]
+
+
 
 
 """
@@ -147,17 +138,15 @@ while Charles.thirst >= 1:
     print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
     
 print "Final stock: " + str(my_bar_stock)
-"""
 
-Jones = Human("Jones", 1000, 0, 0, True, False, 100, 0)
-Charles = Human("Charles", 100, 40, 0, False, True, 5, 100)
-James = Human("James", 100, 10, 0, False, True, 5, 100)
-
-EmployeeList = [Jones.name]
-CustomerList = [Charles.name]
-HumanList = [EmployeeList[::], CustomerList[::]]
-
-Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
 
     
 print str(my_bar_stock)
+
+Charles.untilDrunk(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
+while Charles.thirst >= 1:
+    print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, bar, Charles.thirst)
+print str(my_bar_stock)
+"""
+
+print Charles.buyDrink(Charles.money, my_bar_stock, Charles.desparation, my_bar_prices, Charles.thirst)
